@@ -1,0 +1,18 @@
+query RateQuery {
+  rates {
+    date
+    base
+    rates {
+      USD
+      CAD
+      IDR
+      GBP
+      CHF
+      SGD
+      INR
+      MYR
+      JPY
+      KRW
+    }
+  }
+}

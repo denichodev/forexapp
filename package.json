@@ -1,0 +1,178 @@
+{
+  "name": "forexapp",
+  "version": "1.0.0",
+  "description": "React client-side only forex calculator app",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/runtime": "7.1.2",
+    "apollo-boost": "0.1.16",
+    "apollo-cache-inmemory": "1.2.5",
+    "apollo-client": "2.3.5",
+    "apollo-link": "1.2.2",
+    "apollo-link-batch-http": "1.2.2",
+    "apollo-link-retry": "2.2.4",
+    "apollo-server-koa": "2.1.0",
+    "babel-plugin-graphql-tag": "1.6.0",
+    "emotion": "9.2.12",
+    "file-loader": "2.0.0",
+    "graphql": "14.0.2",
+    "graphql-tag": "2.10.0",
+    "history": "4.7.2",
+    "isomorphic-fetch": "2.2.1",
+    "koa": "2.5.3",
+    "koa-bodyparser": "4.2.1",
+    "koa-connect": "2.0.1",
+    "lodash": "4.17.11",
+    "querystring": "0.2.0",
+    "react": "16.5.2",
+    "react-apollo": "2.1.11",
+    "react-dom": "16.5.2",
+    "react-emotion": "9.2.12",
+    "react-router-dom": "4.3.1",
+    "serve": "10.0.2",
+    "url": "0.11.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.1.0",
+    "@babel/core": "7.1.0",
+    "@babel/node": "7.0.0",
+    "@babel/plugin-proposal-class-properties": "7.1.0",
+    "@babel/plugin-proposal-decorators": "7.1.0",
+    "@babel/plugin-proposal-export-default-from": "7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "7.0.0",
+    "@babel/plugin-syntax-async-generators": "7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "7.0.0",
+    "@babel/plugin-transform-destructuring": "7.0.0",
+    "@babel/plugin-transform-react-jsx-self": "7.0.0",
+    "@babel/plugin-transform-react-jsx-source": "7.0.0",
+    "@babel/plugin-transform-runtime": "7.1.0",
+    "@babel/polyfill": "7.0.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "@babel/register": "7.0.0",
+    "app-root-dir": "1.0.2",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "23.6.0",
+    "babel-loader": "8.0.4",
+    "babel-plugin-emotion": "9.2.11",
+    "babel-plugin-macros": "2.4.2",
+    "better-npm-run": "0.1.1",
+    "connect-history-api-fallback": "1.5.0",
+    "eslint": "5.6.1",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "3.1.0",
+    "eslint-import-resolver-webpack": "0.10.1",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-prettier": "3.0.0",
+    "eslint-plugin-react": "7.11.1",
+    "friendly-errors-webpack-plugin": "1.7.0",
+    "html-webpack-plugin": "3.2.0",
+    "jest": "23.6.0",
+    "jest-emotion": "9.2.11",
+    "prettier": "1.14.3",
+    "react-hot-loader": "4.3.11",
+    "react-test-renderer": "16.5.2",
+    "react-testing-library": "5.2.0",
+    "simple-progress-webpack-plugin": "1.1.2",
+    "start-server-webpack-plugin": "2.2.5",
+    "webpack": "4.20.2",
+    "webpack-cli": "3.1.2",
+    "webpack-node-externals": "1.7.2",
+    "webpack-serve": "2.0.2"
+  },
+  "scripts": {
+    "test": "jest --watch --env=jsdom",
+    "coverage": "jest --env=jsdom --coverage",
+    "web:dev": "bnr web:dev",
+    "web:build": "bnr web:build",
+    "serve:dist": "serve dist",
+    "graphql:dev": "bnr graphql:dev",
+    "graphql:build": "bnr graphql:build"
+  },
+  "betterScripts": {
+    "web:dev": {
+      "command": "webpack-serve --config ./web/src/webpack-serve.config.js",
+      "env": {
+        "DIR": "web/src",
+        "PORT": "3000"
+      }
+    },
+    "web:build": {
+      "command": "webpack --config ./web/src/webpack.config.babel.js",
+      "env": {
+        "DIR": "web/src",
+        "NODE_ENV": "production"
+      }
+    },
+    "graphql:dev": {
+      "command": "webpack --config ./graphql/webpack.config.babel.js",
+      "env": {
+        "DIR": "graphql",
+        "PORT": "3030"
+      }
+    },
+    "graphql:build": {
+      "command": "webpack --config ./graphql/webpack.config.babel.js",
+      "env": {
+        "NODE_ENV": "production",
+        "DIR": "graphql"
+      }
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "web/src/**/*.{js,jsx,mjs}"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/web/src/setupTests.js",
+    "testMatch": [
+      "**/__tests__/**/*.{js,jsx,mjs}",
+      "**/?(*.)(spec|test).{js,jsx,mjs}"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost:3000",
+    "transform": {
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/web/jest/assetsTransformer.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$",
+      "^.+\\.module\\.css$"
+    ],
+    "moduleFileExtensions": [
+      "web.js",
+      "mjs",
+      "js",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ],
+    "watchPathIgnorePatterns": [
+      "<rootDir>/web/src/index.js",
+      "<rootDir>/web/src/setupTests.js",
+      "<rootDir>/web/src/apollo/*",
+      "<rootDir>/web/src/webpack.config.babel.js",
+      "<rootDir>/web/src/webpack-serve.config.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/web/src/index.js",
+      "<rootDir>/web/src/setupTests.js",
+      "<rootDir>/web/src/apollo/*",
+      "<rootDir>/web/src/webpack.config.babel.js",
+      "<rootDir>/web/src/webpack-serve.config.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/web/src/index.js",
+      "<rootDir>/web/src/setupTests.js",
+      "<rootDir>/web/src/apollo/*",
+      "<rootDir>/web/src/webpack.config.babel.js",
+      "<rootDir>/web/src/webpack-serve.config.js"
+    ]
+  },
+  "author": "Deni Cho <denichodev@gmail.com>",
+  "license": "ISC"
+}

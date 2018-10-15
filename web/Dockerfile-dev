@@ -1,0 +1,17 @@
+FROM node:carbon
+
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+
+WORKDIR /usr/app
+
+COPY package.json ./
+COPY yarn.lock ./
+COPY babel.config.js ./
+
+RUN yarn
+
+COPY web /usr/app/web
+
+EXPOSE 3000
+
+CMD ["yarn", "web:dev"]

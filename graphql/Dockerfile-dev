@@ -1,0 +1,17 @@
+FROM node:carbon
+
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+
+WORKDIR /usr/app
+
+COPY package.json ./
+COPY yarn.lock ./
+COPY babel.config.js ./
+
+RUN yarn
+
+COPY graphql /usr/app/graphql
+
+EXPOSE 3030
+
+CMD ["yarn", "graphql:dev"]
