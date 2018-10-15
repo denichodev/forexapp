@@ -33,7 +33,7 @@ Client app will be live on `http://localhost:3000` while GraphQL service will ru
 
 Deployment are done in DigitalOcean with `docker-machine`, see [here](https://docs.docker.com/machine/examples/ocean/#step-2-generate-a-personal-access-token). There is a shellscript to run a simple deployment setup. Create a machine with your own token, edit `eval $(docker-machine env forexapp-prod)` this line in `/kit.sh`, and run `sh ./kit.sh deploy`.
 
-Client app will be live on `http://localhost:3000` while GraphQL service will run on `http://localhost:3030/graphql`.
+Nginx will serve static files from the `/dist` folder (no proxy pass yet).
 
 ## Scripts
 
