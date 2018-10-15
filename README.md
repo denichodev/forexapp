@@ -3,7 +3,7 @@
 
 ------
 
-Forexapp - Currency changer app, built with with React, Docker.
+Forexapp - Currency changer app, built with with React, Docker from scratch.
 
 ## Folder structure
 
