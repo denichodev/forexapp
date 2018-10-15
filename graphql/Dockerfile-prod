@@ -1,0 +1,40 @@
+# Base node and machine deps
+FROM node:carbon as base
+
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+
+WORKDIR /usr/app
+
+# App dependencies
+FROM base as dependencies
+
+COPY package.json ./
+COPY yarn.lock ./
+COPY babel.config.js ./
+
+RUN yarn install
+
+# Build
+FROM dependencies AS build
+
+WORKDIR /usr/app
+
+COPY graphql /usr/app/graphql
+
+RUN yarn graphql:build
+
+# Release with alpine
+FROM node:8.12.0-alpine AS release
+
+WORKDIR /usr/app
+
+COPY --from=dependencies /usr/app/package.json ./
+COPY --from=dependencies /usr/app/yarn.lock ./
+
+RUN yarn install --production
+
+COPY --from=build /usr/app/build/graphql/server ./dist
+
+EXPOSE 3030
+
+CMD ["node", "dist/index.js"]
