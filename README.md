@@ -1,6 +1,7 @@
 # ForexApp
-### See it live [here](http://167.99.63.194/)
+## See it live [here](http://167.99.63.194/)
 
+------
 
 Forexapp - Currency changer app, built with with React, Docker.
 
