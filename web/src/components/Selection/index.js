@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { arrayOf, string, shape, number, func } from 'prop-types';
 
+import { SelectionWrapper, Select, Button } from './styles';
+
 class Selection extends Component {
   constructor(props) {
     super(props);
@@ -30,14 +32,17 @@ class Selection extends Component {
     const { selected } = this.state;
 
     return (
-      <div>
-        <select value={selected} onChange={this.handleChange}>
+      <SelectionWrapper>
+        Add more currency: 
+        <Select value={selected} onChange={this.handleChange}>
           {options.map((opt) => (
-            <option key={opt.code} value={opt.code}>{opt.code}</option>
+            <option key={opt.code} value={opt.code}>
+              {opt.code}
+            </option>
           ))}
-        </select>
-        <button type="submit" onClick={this.handleSubmit} />
-      </div>
+        </Select>
+        <Button onClick={this.handleSubmit}>Submit</Button>
+      </SelectionWrapper>
     );
   }
 }
@@ -53,7 +58,7 @@ Selection.propTypes = {
 };
 
 Selection.defaultProps = {
-  onSubmit: () => {},
+  onSubmit: () => {}
 };
 
 export default Selection;

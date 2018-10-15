@@ -56,6 +56,12 @@ class Forex extends Component {
     }));
   };
 
+  handleDelete = code => {
+    this.setState(prevState => ({
+      activeCurrencies: prevState.activeCurrencies.filter(c => c !== code)
+    }))
+  }
+
   render() {
     const { loading, data } = this.props;
     const { baseValue, activeCurrencies } = this.state;
@@ -63,8 +69,6 @@ class Forex extends Component {
     if (loading) {
       return 'Loading...';
     }
-
-    console.log('data', data);
 
     return (
       <Fragment>
@@ -85,6 +89,7 @@ class Forex extends Component {
               code={currencyCode}
               multiplier={rate}
               baseValue={baseValue}
+              onDelete={this.handleDelete}
             />
           );
         })}

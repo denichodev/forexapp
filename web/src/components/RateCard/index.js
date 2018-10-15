@@ -1,7 +1,13 @@
-import React from 'react';
-import { string, number } from 'prop-types';
+import React, { PureComponent } from 'react';
+import { string, number, func } from 'prop-types';
 
-import { RateCardWrapper, RateTitle } from './styles';
+import {
+  RateCardWrapper,
+  RateSubText,
+  BigCode,
+  RateCardFirstRow,
+  DeleteButton
+} from './styles';
 
 const calculate = (baseValue, multiplier) => {
   const parsedBaseVal = parseFloat(baseValue);
@@ -10,18 +16,40 @@ const calculate = (baseValue, multiplier) => {
   return calculatedValue;
 };
 
-const RateCard = ({ code, baseValue, multiplier }) => (
-  <RateCardWrapper>
-    <RateTitle>
-      {code} - {calculate(baseValue, multiplier)}
-    </RateTitle>
-  </RateCardWrapper>
-);
+class RateCard extends PureComponent {
+  handleDelete = () => {
+    const { code, onDelete } = this.props;
+
+    onDelete(code);
+  }
+
+  render() {
+    const { code, baseValue, multiplier } = this.props;
+
+    return (
+      <RateCardWrapper>
+        <RateCardFirstRow>
+          <BigCode>{code}</BigCode>
+          {calculate(baseValue, multiplier)}
+        </RateCardFirstRow>
+        <RateSubText>
+          {`1 USD = ${code} ${multiplier.toFixed(2)}`}
+          <DeleteButton onClick={this.handleDelete}>Delete</DeleteButton>
+        </RateSubText>
+      </RateCardWrapper>
+    );
+  }
+}
 
 RateCard.propTypes = {
   baseValue: string.isRequired,
   code: string.isRequired,
-  multiplier: number.isRequired
+  multiplier: number.isRequired,
+  onDelete: func
+};
+
+RateCard.defaultProps = {
+  onDelete: () => {}
 };
 
 export default RateCard;
